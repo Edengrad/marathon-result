@@ -1,8 +1,12 @@
 #include <iostream>
+#include <iomanip>
+
 using namespace std;
+
 #include "book_resullt.h"
 #include "file_reader.h"
 #include "constants.h"
+
 int main()
 {
 	setlocale(LC_ALL, "Russian");
@@ -14,18 +18,22 @@ int main()
 	try
 	{
 		read("data.txt", results, size);
+		cout << "***** Результаты марафона *****\n\n";
 		for (int i = 0; i < size; i++)
 		{
 			cout << results[i]->participant.number << '\n';
 			cout << results[i]->participant.last_name << '\n';
-			cout << results[i]->participant.first_name << '\n';
-			cout << results[i]->participant.middle_name << '\n';
-			cout << results[i]->finish.hour << ' ';
-			cout << results[i]->finish.minut << ' ';
-			cout << results[i]->finish.second << '\n';
-			cout << results[i]->start.hour << ' ';
-			cout << results[i]->start.minut << ' ';
-			cout << results[i]->start.second << '\n';
+			cout << results[i]->participant.first_name[0] << '\n';
+			cout << results[i]->participant.middle_name[0] << '\n';
+			cout << '\n';
+			cout << setw(2) << setfill('0') << results[i]->start.hour << ':';
+			cout << setw(2) << setfill('0') << results[i]->start.minut << ':';
+			cout << setw(2) << setfill('0') << results[i]->start.second;
+			cout << '\n';
+			cout << setw(2) << setfill('0') << results[i]->finish.hour << ':';
+			cout << setw(2) << setfill('0') << results[i]->finish.minut << ':';
+			cout << setw(2) << setfill('0') <<results[i]->finish.second;
+			cout << '\n';
 			cout << results[i]->club << '\n';
 			cout << '\n';
 		}
